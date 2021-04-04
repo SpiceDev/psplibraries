@@ -84,7 +84,10 @@ function download_and_extract
     [ -f $name ] || wget --no-check-certificate $url -O $name && auto_extract $name
     
     # Switch to the newly created directory
-    cd $outdir || return 1
+    cd $outdir || return 1;
+    
+    # replace extremely old config.guess files that are missing aarch64 / arm64
+    find . -name "config.guess" -exec cp ../../new-config.guess {} \;
 }
 
 # Usage: get_pspports DIR
@@ -107,7 +110,7 @@ function get_pspports {
     else
         # clone psp-ports
 
-        git clone "https://github.com/pspdev/psp-ports.git" psp-ports
+        git clone "https://github.com/SpiceDev/psp-ports.git" psp-ports
         cd psp-ports/$1 || { return 1; } 
     fi
 }
@@ -140,6 +143,9 @@ function get_pspport {
         cd $repository || return 1;
         git checkout $branch
     fi
+
+    # replace extremely old config.guess files that are missing aarch64 / arm64
+    find . -name "config.guess" -exec cp ../../new-config.guess {} \;
 }
 
 # Clones or updates a Git repository.
