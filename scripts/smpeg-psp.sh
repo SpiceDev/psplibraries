@@ -3,7 +3,7 @@ rm -Rf smpeg-psp && mkdir smpeg-psp && tar --strip-components=1 --directory=smpe
 cd smpeg-psp
 
 # replace extremely old config.guess files that are missing aarch64 / arm64
-find . -name "config.guess" -exec cp ../../new-config.guess {} \;
+find . -name "config.guess" -exec cp $basepath/new-config.guess {} \;
 
 apply_patch smpeg-psp
 sed -i -e "s/static __inline__ Uint16 SDL_Swap16(Uint16 x)/static __inline__ Uint16 Disable_SDL_Swap16(Uint16 x)/" audio/*.cpp || { exit 1; }

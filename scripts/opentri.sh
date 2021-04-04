@@ -5,6 +5,6 @@ rm -Rf openTRI && mkdir openTRI && tar --strip-components=1 --directory=openTRI 
 cd openTRI
 
 # replace extremely old config.guess files that are missing aarch64 / arm64
-find . -name "config.guess" -exec cp ../../new-config.guess {} \;
+find . -name "config.guess" -exec cp $basepath/new-config.guess {} \;
 
 CP=cp MKDIR=mkdir DOXYGEN=doxygen PNG=1 FT=1 run_make -j `num_cpus`

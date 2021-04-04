@@ -87,7 +87,7 @@ function download_and_extract
     cd $outdir || return 1;
     
     # replace extremely old config.guess files that are missing aarch64 / arm64
-    find . -name "config.guess" -exec cp ../../new-config.guess {} \;
+    find . -name "config.guess" -exec cp $basepath/new-config.guess {} \;
 }
 
 # Usage: get_pspports DIR
@@ -145,7 +145,7 @@ function get_pspport {
     fi
 
     # replace extremely old config.guess files that are missing aarch64 / arm64
-    find . -name "config.guess" -exec cp ../../new-config.guess {} \;
+    find . -name "config.guess" -exec cp $basepath/new-config.guess {} \;
 }
 
 # Clones or updates a Git repository.
